@@ -1,0 +1,59 @@
+<h1><%= title %></h1>
+
+<%= form_with model: @user do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, 'Họ và tên', class: 'form-label' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email, 'Email', class: 'form-label' %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :dob, 'Ngày sinh', class: 'form-label' %>
+    <%= f.date_field :dob, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :address, 'Địa chỉ', class: 'form-label' %>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :phone, 'Số điện thoại', class: 'form-label' %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <%= f.radio_button :gender, 1, class: 'form-check-input', checked: true %>
+      <%= f.label :gender, 'Nam', class: 'form-check-label' %>
+    </div>
+
+    <div class="form-check">
+      <%= f.radio_button :gender, 0, class: 'form-check-input' %>
+      <%= f.label :gender, 'Nữ', class: 'form-check-label'%>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :vacine, 'Trạng thái tiêm vacine', class: 'form-check-label'%>
+    <%= f.select :vacine, [['Đã tiêm vacine', true], ['Chưa tiêm vacine', false]], {}, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <% Language.all.each do |language| %>
+      <div class='row'>
+        <label>
+          <%= f.check_box :language, { multiple: true }, language.id, nil %>
+          <%= language.name %>
+        </label>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit 'Đăng ký', class: 'btn btn-success' %>
+
+  <% end %>
